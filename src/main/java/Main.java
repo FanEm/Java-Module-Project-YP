@@ -25,8 +25,10 @@ public class Main {
             System.out.println("Введите название машины №" + carNumber);
             String name = scanner.nextLine().trim();
 
-            if (name.isEmpty()) {
-                System.out.println("Название не должно быть пустым");
+            try {
+                Car.validateName(name);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
                 continue;
             }
 
@@ -44,12 +46,12 @@ public class Main {
             System.out.println("Введите скорость машины №" + carNumber);
             try {
                 int speed = Integer.parseInt(scanner.nextLine().trim());
-                if (Car.isSpeedValid(speed)) {
-                    return speed;
-                }
-                System.out.println("Скорость должна быть от 1 до " + Car.MAX_SPEED);
+                Car.validateSpeed(speed);
+                return speed;
             } catch (NumberFormatException e) {
                 System.out.println("Ожидается целое число");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

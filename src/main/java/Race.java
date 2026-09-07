@@ -1,11 +1,12 @@
 import java.util.HashSet;
+import java.util.Set;
 
 public class Race {
     private static final int RACE_DURATION_HOURS = 24;
 
     private Car leader;
     private int leaderDistance;
-    private final HashSet<String> carNames = new HashSet<>();
+    private final Set<String> carNames = new HashSet<>();
 
     public boolean containsCar(String name) {
         return carNames.contains(name);
